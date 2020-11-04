@@ -3,8 +3,10 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
-// axios.defaults.baseURL = 'http://starforce.xyz/api'
 axios.defaults.baseURL = 'http://mmpi.com/api'
+
+
+// axios.defaults.baseURL = 'http://starforce.xyz/api'
 // axios.defaults.baseURL = 'http://localhost:4200/api'
 
 // axios.defaults.baseURL = '/api'

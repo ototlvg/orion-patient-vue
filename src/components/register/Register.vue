@@ -68,6 +68,15 @@
                         <span class="register__wrapper__vo__form__vp__error uk-text-danger">{{ errors[0] }}</span>
                     </ValidationProvider>
 
+                    <ValidationProvider class="register__wrapper__vo__form__vp" name="escolaridad" rules="required" v-slot="{ errors }">
+                        <label class="register__wrapper__vo__form__vp__label" for="form-stacked-text">Escolaridad</label>
+                        <select class="register__wrapper__vo__form__vp__input uk-select" v-model="escolaridad">
+                            <option v-for="(escolaridad, index) in escolaridades" v-bind:key="index" :value="escolaridad.id">{{escolaridad.escolaridad}}</option>
+                            
+                        </select>
+                        <span class="register__wrapper__vo__form__vp__error uk-text-danger">{{ errors[0] }}</span>
+                    </ValidationProvider>
+
 
 
                     
@@ -170,10 +179,11 @@ export default {
         }
         this.$store.dispatch('getRegisterData')
         .then(response => {
-            // console.log(response)
+            console.log(response)
             this.genders= response.genders
             this.ms= response.marital
             this.jobs= response.jobs
+            this.escolaridades = response.escolaridades
         })
         .catch(error => {
             this.launchNotification()
@@ -189,6 +199,7 @@ export default {
             marital: '',
             birthday: '',
             job: '',
+            escolaridad: '',
             email: '',
             genders: null,
             ms: null,
@@ -197,6 +208,7 @@ export default {
             errorServer: null,
             loading: false, 
             code: null,
+            escolaridades: null
         }
     },
     computed: {
@@ -227,7 +239,8 @@ export default {
                 marital: this.marital,
                 birthday: this.birthday,
                 job: this.job,
-                email: this.email
+                email: this.email,
+                escolaridad: this.escolaridad
             })
             .then(response => {
                 este.code= response
